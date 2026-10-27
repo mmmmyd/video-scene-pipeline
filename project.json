@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "models": {
+    "builder": {
+      "provider": "REPLACE_PROVIDER",
+      "model": "REPLACE_VISION_CODE_MODEL",
+      "transport": "chat_completions",
+      "endpoint": "https://REPLACE_HOST/v1/chat/completions",
+      "api_key_env": "SCENE_MODEL_API_KEY",
+      "capabilities": [
+        "vision",
+        "code"
+      ],
+      "timeout_s": 600,
+      "max_images": 80,
+      "image_max_side": 1280,
+      "max_context_chars": 600000,
+      "parameters": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "reviewer": {
+      "provider": "REPLACE_PROVIDER",
+      "model": "REPLACE_VISION_REVIEW_MODEL",
+      "transport": "chat_completions",
+      "endpoint": "https://REPLACE_HOST/v1/chat/completions",
+      "api_key_env": "SCENE_MODEL_API_KEY",
+      "capabilities": [
+        "vision"
+      ],
+      "timeout_s": 600,
+      "max_images": 80,
+      "image_max_side": 1280,
+      "max_context_chars": 600000,
+      "parameters": {
+        "response_format": {
+          "type": "json_object"
+        }
+      }
+    },
+    "reference": {
+      "provider": "REPLACE_IMAGE_PROVIDER",
+      "model": "REPLACE_ACTUAL_IMAGE_MODEL_ID",
+      "stage_label": "image2.5",
+      "transport": "image_edits",
+      "endpoint": "https://REPLACE_HOST/v1/images/edits",
+      "api_key_env": "SCENE_IMAGE_API_KEY",
+      "capabilities": [
+        "image_generation"
+      ],
+      "timeout_s": 600,
+      "max_images": 80,
+      "parameters": {
+        "n": 1,
+        "size": "1536x1024"
+      }
+    }
+  },
+  "roles": {
+    "analysis": "builder",
+    "blockout": "builder",
+    "connections": "builder",
+    "materials": "builder",
+    "repair": "builder",
+    "reference": "reference",
+    "reference_review": "reviewer",
+    "review": "reviewer",
+    "dataset": "builder"
+  },
+  "input": {
+    "videos": [
+      "test_inputs/pool/块状水池1.mp4",
+      "test_inputs/pool/块状水池2.mp4",
+      "test_inputs/pool/块状水池3.mp4"
+    ]
+  },
+  "blender": {
+    "executable": "blender",
+    "backend": "managed_mcp",
+    "addon_dir": "vendor",
+    "timeout_s": 3600
+  },
+  "output": {
+    "directory": "outputs/scene",
+    "width": 640,
+    "height": 360,
+    "samples": 16,
+    "view_ids": [
+      "rear_center",
+      "rear_left",
+      "rear_right"
+    ],
+    "duration_s": 3.0,
+    "fps": 24,
+    "travel": 1.2,
+    "multimodal_every": 6,
+    "point_stride": 2
+  },
+  "ingest": {
+    "interval_s": 1.0,
+    "max_frames_per_video": 80,
+    "extra_times_s": {}
+  },
+  "policy": {
+    "video_coverage": "sampled_frames"
+  },
+  "limits": {
+    "provider_attempts": 2,
+    "validation_attempts": 2,
+    "max_repairs": 3
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-23",
+  "project_version": "1.0.0",
+  "unit_tests_passed": 38,
+  "blender_version": "5.2.2 LTS",
+  "backend": "managed_mcp",
+  "bundled_addon": true,
+  "from_video": true,
+  "automatic_repair_rounds": 1,
+  "dataset_validation_passed": true,
+  "rgb_frames": 8,
+  "depth_frames": 6,
+  "ply_files": 12,
+  "video_count": 2,
+  "video_durations_s": [
+    2.0,
+    2.0
+  ],
+  "max_reprojection_error_px": 7.944109290391274e-14,
+  "scope": "deterministic test provider + actual Blender, not a live model service or semantic reconstruction quality measurement",
+  "delivery_sha256": "ae9895c2c0d813c112251ff71538af05baffb582e9e3975bf6998c4f4bbe4179"
+}
