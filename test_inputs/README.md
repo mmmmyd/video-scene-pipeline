@@ -38,4 +38,26 @@
 
 同时将 `output.directory` 设为新的输出目录，例如 `outputs/complex_steps`，然后仍用 `python start.py` 运行。
 
+## 楼梯间
+
+`stairwell/` 包含四个楼梯间原始视频，均按原样保存，没有压缩或重新编码：
+
+- `楼梯间_台阶右侧.mp4`
+- `楼梯间_台阶左侧.mp4`
+- `楼梯间_新运镜.mp4`
+- `楼梯间_新运镜窄视野.mp4`
+
+测试这个场景时，将根目录 `project.json` 的 `input.videos` 替换为：
+
+```json
+[
+  "test_inputs/stairwell/楼梯间_台阶右侧.mp4",
+  "test_inputs/stairwell/楼梯间_台阶左侧.mp4",
+  "test_inputs/stairwell/楼梯间_新运镜.mp4",
+  "test_inputs/stairwell/楼梯间_新运镜窄视野.mp4"
+]
+```
+
+同时将 `output.directory` 设为新的输出目录，例如 `outputs/stairwell`，然后仍用 `python start.py` 运行。
+
 这些视频是实际场景的输入样本，并非已通过重建质量验收的基准结果。`validation/example_delivery.zip` 是软件流程验证样例，使用的是另一组软件测试素材，不能当作上述视频的重建输出。
